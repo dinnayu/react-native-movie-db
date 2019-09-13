@@ -6,13 +6,13 @@ import {
 } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import AppNavigator from './src/navigator/AppNavigator';
 
 class MovieApp extends React.Component {
 
     render(){
         return (
-            <View>
-            </View>
+            <AppNavigator />
         )
     }
 }
