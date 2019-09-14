@@ -1,5 +1,6 @@
 import BaseService, { BASE_URL, API_KEY, API, LANGUAGE } from '../services/BaseService';
 import Constant from '../common/Constant';
+import {isLoadingOverlayAction, fetchRequestFailure} from './CommonActions';
 
 export const updateNowPlayingAction = nowPlaying => ({
     type: Constant.REDUX_ACTION_TYPE.NOW_PLAYING_ACTION,
@@ -8,14 +9,15 @@ export const updateNowPlayingAction = nowPlaying => ({
 
 export function fetchMovieList(){
     const URL = `${BASE_URL}/movie/now_playing${API}${API_KEY}&${LANGUAGE}&page=1`;
-    console.log("URL >>>> ", URL)
     return dispatch => {
+        dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updateNowPlayingAction(response))
+                dispatch(updateNowPlayingAction(response));
+                dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
-                console.warn(error)
+                dispatch(fetchRequestFailure(error))
             })
     };
 }

@@ -11,7 +11,6 @@ class MoviesLandingScreen extends React.Component {
     }
 
     componentDidUpdate(){
-        console.warn(this.props.movies)
     }
 
     render() {
