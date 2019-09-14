@@ -9,45 +9,45 @@ import Carousel from '../common/Carousel';
 
 class MoviesLandingScreen extends React.Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.getMovieList();
     }
 
-    getMovieList(){
+    getMovieList() {
         this.props.fetchNowPlayingMovie();
         this.props.fetchPopularMovie();
         this.props.fetchUpcomingMovie();
     }
 
-    getObjectData(type, data){
+    getObjectData(type, data) {
         return {
             "type": type,
             "result": data
         }
     }
 
-    getFlatListItem(index, item){
-        return <Carousel data={item} navigation={this.props.navigation}/>
+    getFlatListItem(index, item) {
+        return <Carousel data={item} navigation={this.props.navigation} />
     }
 
     render() {
         var data = [];
-        if (this.props.movies && this.props.movies.nowPlaying && this.props.movies.nowPlaying.results.length > 0){
+        if (this.props.movies && this.props.movies.nowPlaying && this.props.movies.nowPlaying.results.length > 0) {
             data.push(this.getObjectData(Constant.MOVIES_TYPE.NOW_PLAYING, this.props.movies.nowPlaying.results));
         }
 
-        if (this.props.movies && this.props.movies.popular && this.props.movies.popular.results.length > 0){
+        if (this.props.movies && this.props.movies.popular && this.props.movies.popular.results.length > 0) {
             data.push(this.getObjectData(Constant.MOVIES_TYPE.POPULAR, this.props.movies.popular.results));
         }
 
-        if (this.props.movies && this.props.movies.upcoming && this.props.movies.upcoming.results.length > 0){
+        if (this.props.movies && this.props.movies.upcoming && this.props.movies.upcoming.results.length > 0) {
             data.push(this.getObjectData(Constant.MOVIES_TYPE.UPCOMING, this.props.movies.upcoming.results));
         }
 
         return (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <FlatList
-                    style={{flex: 1}}
+                    style={{ flex: 1 }}
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => this.getFlatListItem(index, item)}
@@ -58,7 +58,7 @@ class MoviesLandingScreen extends React.Component {
 }
 
 /** Map to redux components. */
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie }, dispatch);
 
 
 /** Map common and book state to redux components */

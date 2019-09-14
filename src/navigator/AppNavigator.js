@@ -4,7 +4,8 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import MoviesLandingScreen from '../features/movies/MoviesLandingScreen';
-import TvShowsLandingScreen from '../features/tvshows/TVShowsLandingScree';
+import MovieDetailsScreen from '../features/movies/MovieDetailsScreen';
+
 
 /**
  * Configure or create Tabbar menu properties
@@ -25,7 +26,7 @@ const getTabBarMenu = (menuName, activeImage, inactiveImage) => {
 
 const MovieStack = createStackNavigator({
     MoviesLanding: { screen: MoviesLandingScreen },
-    TvShows: { screen: TvShowsLandingScreen}
+    MovieDetails: { screen: MovieDetailsScreen }
 });
 let imageFooterSelected = require('../assets/movie_orange.png')
 let imageFooter = require('../assets/movie_grey.png')
