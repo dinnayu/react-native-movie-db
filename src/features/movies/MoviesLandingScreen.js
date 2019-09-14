@@ -10,7 +10,7 @@ import Styles from './Styles';
 
 class MoviesLandingScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
-        return { headerTitle: "MOVIES" };
+        return { headerTitle: Constant.TITLE.MOVIES};
     }
 
     componentDidMount() {

@@ -34,7 +34,6 @@ let imageFooter = require('../assets/movie_grey.png')
 MovieStack.navigationOptions = getTabBarMenu("Movies", imageFooterSelected, imageFooter);
 
 const TvStack = createStackNavigator({
-    MoviesLanding: { screen: MoviesLandingScreen },
     TvShows: { screen: TvShowsLandingScreen}
 });
 let tvSelected = require('../assets/tv_orange.png')
