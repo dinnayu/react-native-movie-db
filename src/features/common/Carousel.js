@@ -7,7 +7,13 @@ export default class Carousel extends React.Component {
 
     getTitle(){
         return (
-            <Text style={Styles.textCarouselTitle}>{this.props.data.type}</Text>
+            <View style={Styles.containerCarouselTitle}>
+                <Text style={Styles.textCarouselTitle}>{this.props.data.type}</Text>
+                <TouchableOpacity>
+                    <Image style={Styles.arrowImage} source={require('../../assets/right_arrow_orange.png')} />
+                </TouchableOpacity>
+            </View>
+            
         )
     }
 

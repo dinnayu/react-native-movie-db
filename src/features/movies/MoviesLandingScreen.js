@@ -6,8 +6,12 @@ import { View, Text } from 'react-native';
 import { fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie } from '../../actions/MoviesActions';
 import Constant from '../../common/Constant';
 import Carousel from '../common/Carousel';
+import Styles from './Styles';
 
 class MoviesLandingScreen extends React.Component {
+    static navigationOptions = ({ navigation }) => {
+        return { headerTitle: "MOVIES" };
+    }
 
     componentDidMount() {
         this.getMovieList();
@@ -26,8 +30,10 @@ class MoviesLandingScreen extends React.Component {
         }
     }
 
-    getFlatListItem(index, item) {
-        return <Carousel data={item} navigation={this.props.navigation} />
+    getFlatListItem(index, item){
+        return <View style={{marginBottom: 16}}>
+            <Carousel data={item} navigation={this.props.navigation}/>
+        </View>
     }
 
     render() {
@@ -45,9 +51,9 @@ class MoviesLandingScreen extends React.Component {
         }
 
         return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={Styles.containerMovie}>
                 <FlatList
-                    style={{ flex: 1 }}
+                    style={Styles.flatlistMovie}
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => this.getFlatListItem(index, item)}

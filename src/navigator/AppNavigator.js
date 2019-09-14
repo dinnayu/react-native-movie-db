@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import MoviesLandingScreen from '../features/movies/MoviesLandingScreen';
 import MovieDetailsScreen from '../features/movies/MovieDetailsScreen';
-
+import TvShowsLandingScreen from '../features/tvshows/TVShowsLandingScree';
 
 /**
  * Configure or create Tabbar menu properties

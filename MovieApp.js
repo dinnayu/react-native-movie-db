@@ -15,8 +15,7 @@ EStyleSheet.build({});
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-end',
-        paddingTop: 30
+        justifyContent: 'flex-end'
     },
     mask: {
         width: '100%',
@@ -54,6 +53,7 @@ class MovieApp extends React.Component {
     render(){
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor="white" barStyle="dark-content" />
                 <AppNavigator />
                 {this.props.common.isLoading ? this.getMaskingOverlay() : null}
             </View>
