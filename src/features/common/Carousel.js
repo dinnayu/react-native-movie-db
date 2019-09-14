@@ -1,12 +1,13 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, Image, FlatList } from 'react-native';
 import Card from './Card';
+import Styles from './Styles';
 
 export default class Carousel extends React.Component {
 
     getTitle(){
         return (
-            <Text>{this.props.data.type}</Text>
+            <Text style={Styles.textCarouselTitle}>{this.props.data.type}</Text>
         )
     }
 

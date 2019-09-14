@@ -3,14 +3,20 @@ import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text } from 'react-native';
-import { fetchMovieList } from '../../actions/MoviesActions';
+import { fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie } from '../../actions/MoviesActions';
 import Constant from '../../common/Constant';
 import Carousel from '../common/Carousel';
 
 class MoviesLandingScreen extends React.Component {
 
     componentDidMount(){
-        this.props.fetchMovieList();
+        this.getMovieList();
+    }
+
+    getMovieList(){
+        this.props.fetchNowPlayingMovie();
+        this.props.fetchPopularMovie();
+        this.props.fetchUpcomingMovie();
     }
 
     getObjectData(type, data){
@@ -30,6 +36,14 @@ class MoviesLandingScreen extends React.Component {
             data.push(this.getObjectData(Constant.MOVIES_TYPE.NOW_PLAYING, this.props.movies.nowPlaying.results));
         }
 
+        if (this.props.movies && this.props.movies.popular && this.props.movies.popular.results.length > 0){
+            data.push(this.getObjectData(Constant.MOVIES_TYPE.POPULAR, this.props.movies.popular.results));
+        }
+
+        if (this.props.movies && this.props.movies.upcoming && this.props.movies.upcoming.results.length > 0){
+            data.push(this.getObjectData(Constant.MOVIES_TYPE.UPCOMING, this.props.movies.upcoming.results));
+        }
+
         return (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <FlatList
@@ -44,7 +58,7 @@ class MoviesLandingScreen extends React.Component {
 }
 
 /** Map to redux components. */
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchMovieList }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie}, dispatch);
 
 
 /** Map common and book state to redux components */
