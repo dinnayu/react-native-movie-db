@@ -17,13 +17,22 @@ export const updateOnTheAirTvAction = onTheAir => ({
     payload: onTheAir
 });
 
-export function fetchAiringTvList(){
-    const URL = `${BASE_URL}/tv/airing_today${API}${API_KEY}&${LANGUAGE}&page=1`;
+export const updateTvListAction = tvList => ({
+    type: Constant.REDUX_ACTION_TYPE.TV_LIST_ACTION,
+    payload: tvList
+});
+
+export function fetchAiringTvList(page, isRequestList = false){
+    const URL = `${BASE_URL}/tv/airing_today${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updateAiringTvAction(response));
+                if (isRequestList){
+                    dispatch(updateTvListAction(response))
+                } else {
+                    dispatch(updateAiringTvAction(response));
+                }
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
@@ -32,13 +41,17 @@ export function fetchAiringTvList(){
     };
 }
 
-export function fetchPopularTvList(){
-    const URL = `${BASE_URL}/tv/popular${API}${API_KEY}&${LANGUAGE}&page=1`;
+export function fetchPopularTvList(page, isRequestList = false){
+    const URL = `${BASE_URL}/tv/popular${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updatePopularTvAction(response));
+                if (isRequestList){
+                    dispatch(updateTvListAction(response))
+                } else {
+                    dispatch(updatePopularTvAction(response));
+                }
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
@@ -47,13 +60,17 @@ export function fetchPopularTvList(){
     };
 }
 
-export function fetchOnTheAirTvList(){
+export function fetchOnTheAirTvList(page, isRequestList = false){
     const URL = `${BASE_URL}/tv/on_the_air${API}${API_KEY}&${LANGUAGE}&page=1`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updateOnTheAirTvAction(response));
+                if (isRequestList){
+                    dispatch(updateTvListAction(response))
+                } else {
+                    dispatch(updateOnTheAirTvAction(response));
+                }
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {

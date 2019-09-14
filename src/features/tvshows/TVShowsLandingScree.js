@@ -32,8 +32,13 @@ class TVShowsLandingScree extends React.Component {
                 data={item}
                 navigation={this.props.navigation}
                 titleKey={"name"}
+                onPressChevron={this.onPressChevron}
                 />
         </View>
+    }
+
+    onPressChevron = (type) => {
+        this.props.navigation.navigate("TvList", {type: type});
     }
 
     render() {

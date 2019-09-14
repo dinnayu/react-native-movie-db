@@ -7,6 +7,8 @@ import MoviesLandingScreen from '../features/movies/MoviesLandingScreen';
 import MovieDetailsScreen from '../features/movies/MovieDetailsScreen';
 import MovieListScreen from '../features/movies/MovieListScreen';
 import TvShowsLandingScreen from '../features/tvshows/TVShowsLandingScree';
+import TvShowsListScreen from '../features/tvshows/TVShowListScreen';
+import TVShowListScreen from '../features/tvshows/TVShowListScreen';
 
 /**
  * Configure or create Tabbar menu properties
@@ -36,7 +38,8 @@ let imageFooter = require('../assets/movie_grey.png')
 MovieStack.navigationOptions = getTabBarMenu("Movies", imageFooterSelected, imageFooter);
 
 const TvStack = createStackNavigator({
-    TvShows: { screen: TvShowsLandingScreen}
+    TvShows: { screen: TvShowsLandingScreen},
+    TvList: {screen: TVShowListScreen}
 });
 let tvSelected = require('../assets/tv_orange.png')
 let tvUnselected = require('../assets/tv_grey.png')
