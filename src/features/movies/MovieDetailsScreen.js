@@ -17,6 +17,10 @@ class MovieDetailsScreen extends React.Component {
         this.props.fetchMovieDetails(this.props.navigation.state.params.data.id);
     }
 
+    componentWillUnmount(){
+        this.props.movie.movieDetails = null;
+    }
+
     getMovieSynopsis(movieData) {
         return (
             <Text style={Styles.textSynopsis}>{movieData.overview}</Text>

@@ -62,22 +62,35 @@ export default StyleSheet.create({
         marginBottom: 20
     },
     imageMovieList: {
-        width: width-48,
-        aspectRatio: 2/1,
-        resizeMode: 'cover',
+        width: 120,
+        height: 180,
+        alignItems: 'flex-start',
+        resizeMode: 'contain',
         borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
         marginBottom: 12
+    },
+    imageBorder: {
+        borderWidth: 1,
+        borderColor: Color.ORANGE
     },
     imageIcon: {
         width: 20,
         height: 20,
         resizeMode: 'contain'
     },
+    ratingIcon: {
+        width: 15,
+        height: 15,
+        resizeMode: 'contain'
+    },
     textPagination: {
         marginLeft: 5,
         marginRight: 5
+    },
+    textMovieListTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 12
     }
 
 })

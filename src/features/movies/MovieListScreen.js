@@ -70,13 +70,38 @@ class MovieListScreen extends React.Component {
         )
     }
 
+    getRating(rating){
+        if (rating){
+            return (
+                <View style={{flexDirection: 'row'}}>
+                        <Text>{rating}</Text>
+                        <Image style={Styles.ratingIcon} source={require("../../assets/star.png")} />
+                    </View>
+            )
+        }
+    }
+
+    gotoDetailsScreen(item){
+        if (item) {
+            this.props.navigation.navigate('MovieDetails', { data: item });
+        }
+    }
+
     getFlatListItem(index, item){
-        const imageSource = item.poster_path ? {uri: Constant.BASE_URL_IMAGE+item.poster_path} : require('../../assets/left_arrow.png');
+        const imageSource = item.poster_path ? {uri: Constant.BASE_URL_IMAGE+item.poster_path} : require('../../assets/default_image.png');
+
         return (
-            <View>
-                <Image style={Styles.imageMovieList} source={imageSource} />
-                <Text>{item.title}</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.gotoDetailsScreen(item)}>
+                <View style={{marginBottom: 20, flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Image style={[Styles.imageMovieList, item.poster_path ? null : Styles.imageBorder]}
+                        source={imageSource} />
+                    <View style={{flex: 1, marginLeft: 12}}>
+                        <Text style={Styles.textMovieListTitle}>{item.title}</Text>
+                        {this.getRating(item.vote_average)}
+                    </View>
+                </View>
+            </TouchableOpacity>
+            
         )
     }
 
