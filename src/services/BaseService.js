@@ -3,7 +3,6 @@ export const BASE_URL = "https://api.themoviedb.org/3";
 export const API = "?api_key=";
 export const LANGUAGE = "language=en-US";
 
-
 const getReqConfig = (methods, timeout = 30000) => {
 	const reqConfig = {
 		method: methods,
