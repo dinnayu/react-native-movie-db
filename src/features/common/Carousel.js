@@ -12,7 +12,7 @@ export default class Carousel extends React.Component {
     }
 
     getFlatListItem(index, item, size){
-        return <Card data={item} index={index} size={size}/>
+        return <Card data={item} index={index} size={size} navigation={this.props.navigation}/>
     }
 
     render(){

@@ -27,7 +27,7 @@ class MoviesLandingScreen extends React.Component {
     }
 
     getFlatListItem(index, item){
-        return <Carousel data={item} />
+        return <Carousel data={item} navigation={this.props.navigation}/>
     }
 
     render() {
