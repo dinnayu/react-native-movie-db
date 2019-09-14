@@ -7,8 +7,8 @@ class TVShowsLandingScree extends React.Component {
 
     render() {
         return (
-            <View>
-                <Text>TV Shows Landing Screen</Text>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+                <Text style={{ alignSelf: 'center' }}>TV Shows Landing Screen</Text>
             </View>
         );
     }
