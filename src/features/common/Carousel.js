@@ -9,7 +9,7 @@ export default class Carousel extends React.Component {
         return (
             <View style={Styles.containerCarouselTitle}>
                 <Text style={Styles.textCarouselTitle}>{this.props.data.type}</Text>
-                <TouchableOpacity onPress={() => this.props.onPressChevron()}>
+                <TouchableOpacity onPress={() => this.props.onPressChevron(this.props.data.type)}>
                     <Image style={Styles.arrowImage} source={require('../../assets/right_arrow_orange.png')} />
                 </TouchableOpacity>
             </View>

@@ -32,7 +32,7 @@ class MoviesLandingScreen extends React.Component {
 
     gotoScreen = (item, navigation) => {
         if (item) {
-            navigation.navigate('MovieDetails', { movieId: item.id });
+            navigation.navigate('MovieDetails', { data: item });
         }
     }
 
@@ -48,8 +48,8 @@ class MoviesLandingScreen extends React.Component {
         </View>
     }
 
-    onPressChevron = () => {
-        this.props.navigation.navigate("MovieList");
+    onPressChevron = (type) => {
+        this.props.navigation.navigate("MovieList", {type: type});
     }
 
     render() {

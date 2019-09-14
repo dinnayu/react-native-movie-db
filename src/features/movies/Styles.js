@@ -4,20 +4,24 @@ const { width } = Dimensions.get('window');
 
 export default StyleSheet.create({
 
+    /** MOVIES LANDING SCREEN */
+    
     containerMovie: {
         flex: 1,
         justifyContent: 'center'
     },
 
+    flatlistMovie: {
+        flex: 1,
+        paddingTop: 12
+    },
+
+    /** MOVIE DETAILS */
+
     containerMovieDetails: {
         flex: 1,
         paddingLeft: 24,
         paddingRight: 24,
-        paddingTop: 12
-    },
-
-    flatlistMovie: {
-        flex: 1,
         paddingTop: 12
     },
 
@@ -48,6 +52,32 @@ export default StyleSheet.create({
     textSynopsis: {
         fontSize: 14,
         letterSpacing: 0.3
+    },
+
+    /** MOVIE LIST */
+    containerPagination: {
+        width: '100%',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        marginBottom: 20
+    },
+    imageMovieList: {
+        width: width-48,
+        aspectRatio: 2/1,
+        resizeMode: 'cover',
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 12
+    },
+    imageIcon: {
+        width: 20,
+        height: 20,
+        resizeMode: 'contain'
+    },
+    textPagination: {
+        marginLeft: 5,
+        marginRight: 5
     }
 
 })

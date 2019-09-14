@@ -5,7 +5,8 @@ const initialState = {
     nowPlaying: null,
     popular: null,
     upcoming: null,
-    movieDetails: null
+    movieDetails: null,
+    movieList: null
 }
 
 /** Movie reducer to set movies state */
@@ -18,6 +19,8 @@ const Reducer = (state = initialState, action) => {
         return { ...state, upcoming: action.payload};
     } else if (action.type === Constant.REDUX_ACTION_TYPE.MOVIE_DETAILS_ACTION) {
         return { ...state, movieDetails: action.payload};
+    } else if (action.type === Constant.REDUX_ACTION_TYPE.MOVIE_LIST_ACTION) {
+        return { ...state, movieList: action.payload};
     } 
     return state;
 }

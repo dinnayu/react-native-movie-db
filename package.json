@@ -21,7 +21,8 @@
     "react-redux": "7.1.1",
     "redux": "4.0.4",
     "redux-thunk": "2.3.0",
-    "react-native-extended-stylesheet": "0.12.0"
+    "react-native-extended-stylesheet": "0.12.0",
+    "moment": "2.24.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",

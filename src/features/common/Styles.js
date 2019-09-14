@@ -37,7 +37,7 @@ export default StyleSheet.create({
         paddingLeft: 24,
         alignSelf: 'center',
         color: Color.ORANGE,
-        fontSize: 14,
+        fontSize: 18,
         fontWeight: '500'
     }
 

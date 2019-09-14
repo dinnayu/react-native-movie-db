@@ -9,8 +9,12 @@ import Styles from './Styles';
 
 class MovieDetailsScreen extends React.Component {
 
+    static navigationOptions = ({ navigation }) => {
+        return { headerTitle: navigation.state.params.data.title};
+    }
+
     componentDidMount() {
-        this.props.fetchMovieDetails(this.props.navigation.state.params.movieId);
+        this.props.fetchMovieDetails(this.props.navigation.state.params.data.id);
     }
 
     getMovieSynopsis(movieData) {

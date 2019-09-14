@@ -22,13 +22,22 @@ export const updateMovieDetailsAction = movieDetails => ({
     payload: movieDetails
 });
 
-export function fetchNowPlayingMovie(){
-    const URL = `${BASE_URL}/movie/now_playing${API}${API_KEY}&${LANGUAGE}&page=1`;
+export const updateMovieListAction = movieList => ({
+    type: Constant.REDUX_ACTION_TYPE.MOVIE_LIST_ACTION,
+    payload: movieList
+});
+
+export function fetchNowPlayingMovie(page = 1, isRequestList = false){
+    const URL = `${BASE_URL}/movie/now_playing${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updateNowPlayingAction(response));
+                if (isRequestList){
+                    dispatch(updateMovieListAction(response));
+                } else {
+                    dispatch(updateNowPlayingAction(response));
+                }
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
@@ -37,13 +46,17 @@ export function fetchNowPlayingMovie(){
     };
 }
 
-export function fetchPopularMovie(){
-    const URL = `${BASE_URL}/movie/popular${API}${API_KEY}&${LANGUAGE}&page=1`;
+export function fetchPopularMovie(page = 1, isRequestList = false){
+    const URL = `${BASE_URL}/movie/popular${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updatePopularAction(response));
+                if (isRequestList){
+                    dispatch(updateMovieListAction(response));
+                } else {
+                    dispatch(updatePopularAction(response));
+                }
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
@@ -52,13 +65,18 @@ export function fetchPopularMovie(){
     };
 }
 
-export function fetchUpcomingMovie(){
-    const URL = `${BASE_URL}/movie/upcoming${API}${API_KEY}&${LANGUAGE}&page=1`;
+export function fetchUpcomingMovie(page = 1, isRequestList = false){
+    const URL = `${BASE_URL}/movie/upcoming${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
-                dispatch(updateUpcomingAction(response));
+                if (isRequestList){
+                    dispatch(updateMovieListAction(response));
+                } else {
+                    dispatch(updateUpcomingAction(response));
+                }
+                
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
