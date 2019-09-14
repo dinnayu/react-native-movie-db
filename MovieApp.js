@@ -43,7 +43,6 @@ class MovieApp extends React.Component {
     *   To mask the whole screen when doing a service call
     */
     getMaskingOverlay() {
-        console.warn("HEYHEY")
         return (
             <View style={styles.maskOverlay}>
                 <ActivityIndicator />

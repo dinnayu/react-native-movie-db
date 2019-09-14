@@ -2,8 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text } from 'react-native';
+import { fetchTvList } from '../../actions/TvActions';
 
 class TVShowsLandingScree extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchTvList();
+    }
+    
+    componentDidUpdate() {
+        console.warn(this.props.tvShow)
+    }
 
     render() {
         return (
@@ -15,11 +24,12 @@ class TVShowsLandingScree extends React.Component {
 }
 
 /** Map to redux components. */
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchTvList }, dispatch);
 
 
 /** Map common and book state to redux components */
 const mapStateToProps = state => ({
+    tvShow: state.tvshow
 });
 
 /** Connect mapStateToProps to BookScreen */
