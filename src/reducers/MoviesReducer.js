@@ -4,7 +4,8 @@ import Constant from '../common/Constant';
 const initialState = {
     nowPlaying: null,
     popular: null,
-    upcoming: null
+    upcoming: null,
+    movieDetails: null
 }
 
 /** Movie reducer to set movies state */
@@ -15,6 +16,8 @@ const Reducer = (state = initialState, action) => {
         return { ...state, popular: action.payload};
     } else if (action.type === Constant.REDUX_ACTION_TYPE.UPCOMING_ACTION) {
         return { ...state, upcoming: action.payload};
+    } else if (action.type === Constant.REDUX_ACTION_TYPE.MOVIE_DETAILS_ACTION) {
+        return { ...state, movieDetails: action.payload};
     } 
     return state;
 }

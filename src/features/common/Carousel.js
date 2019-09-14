@@ -18,7 +18,7 @@ export default class Carousel extends React.Component {
     }
 
     getFlatListItem(index, item, size){
-        return <Card data={item} index={index} size={size} navigation={this.props.navigation}/>
+        return <Card onPressAction={this.props.onPressAction} data={item} index={index} size={size} navigation={this.props.navigation}/>
     }
 
     render(){

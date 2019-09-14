@@ -10,7 +10,7 @@ import Styles from './Styles';
 
 class MoviesLandingScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
-        return { headerTitle: Constant.TITLE.MOVIES};
+        return { headerTitle: Constant.TITLE.MOVIES };
     }
 
     componentDidMount() {
@@ -30,10 +30,16 @@ class MoviesLandingScreen extends React.Component {
         }
     }
 
-    getFlatListItem(index, item){
-        return <View style={{marginBottom: 16}}>
-            <Carousel data={item} navigation={this.props.navigation}/>
+    getFlatListItem(index, item) {
+        return <View style={{ marginBottom: 16 }}>
+            <Carousel data={item} navigation={this.props.navigation} />
         </View>
+    }
+
+    gotoScreen = (item, navigation) => {
+        if (item) {
+            navigation.navigate('MovieDetails', { movieId: item.id });
+        }
     }
 
     render() {
