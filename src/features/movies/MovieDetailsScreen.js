@@ -1,11 +1,11 @@
 import React from 'react';
-import { ScrollView, Image, Dimensions } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { View, Text } from 'react-native';
+import moment from 'moment';
 import Constant from '../../common/Constant';
-import { fetchMovieDetails } from '../../actions/DetailsAction';
-const { width } = Dimensions.get('window');
+import { fetchMovieDetails } from '../../actions/MoviesActions';
+import Styles from './Styles';
 
 class MovieDetailsScreen extends React.Component {
 
@@ -13,13 +13,9 @@ class MovieDetailsScreen extends React.Component {
         this.props.fetchMovieDetails(this.props.navigation.state.params.movieId);
     }
 
-    componentDidUpdate() {
-        console.warn(this.props.movie.movieDetails)
-    }
-
     getMovieSynopsis(movieData) {
         return (
-            <Text>{movieData.overview}</Text>
+            <Text style={Styles.textSynopsis}>{movieData.overview}</Text>
         )
     }
 
@@ -32,31 +28,32 @@ class MovieDetailsScreen extends React.Component {
             }
         }
         return (
-            <View style={{ flex: 1 }}>
-                <Text>POPULARITY : {movieData.popularity}</Text>
-                <Text numberOfLines={3}>GENRES : {movieGenre}</Text>
-                <Text>RATING : {movieData.vote_average}</Text>
+            <View style={{ flex: 1, marginLeft: 10 }}>
+                <Text style={Styles.textMovieDetails} numberOfLines={3}>GENRES : {movieGenre}</Text>
+                <Text style={Styles.textMovieDetails}>RATING : {movieData.vote_average}</Text>
             </View>
+        )
+    }
+
+    getMovieTitle(movieDetails){
+        var title = movieDetails.original_title ? movieDetails.original_title : "";
+        var releasedYear = movieDetails.release_date ? `(${moment(movieDetails.release_date).year()})` : "";
+
+        return (
+            <Text style={Styles.titleMovieDetails}>{title} {releasedYear}</Text>
         )
     }
 
     render() {
         if (this.props.movie.movieDetails) {
+            const movieDetails = this.props.movie.movieDetails;
 
-            const movieDetails = this.props.movie.movieDetails
             return (
-                <View style={{ flex: 1 }}>
+                <View style={Styles.containerMovieDetails}>
+                    {this.getMovieTitle(movieDetails)}
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Image style={{
-                            width: width / 3,
-                            aspectRatio: 3 / 4,
-                            resizeMode: 'cover',
-                            borderRadius: 10,
-                            marginBottom: 12,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            top: 0
-                        }} source={{ uri: Constant.BASE_URL_IMAGE + movieDetails.poster_path }} />
+                        <Image style={Styles.imageMovieDetails}
+                            source={{ uri: Constant.BASE_URL_IMAGE + movieDetails.poster_path }} />
                         {this.getMovieRating(movieDetails)}
                     </View>
                     {this.getMovieSynopsis(movieDetails)}

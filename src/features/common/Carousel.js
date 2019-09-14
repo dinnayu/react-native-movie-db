@@ -9,7 +9,7 @@ export default class Carousel extends React.Component {
         return (
             <View style={Styles.containerCarouselTitle}>
                 <Text style={Styles.textCarouselTitle}>{this.props.data.type}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.onPressChevron()}>
                     <Image style={Styles.arrowImage} source={require('../../assets/right_arrow_orange.png')} />
                 </TouchableOpacity>
             </View>
@@ -18,7 +18,14 @@ export default class Carousel extends React.Component {
     }
 
     getFlatListItem(index, item, size){
-        return <Card onPressAction={this.props.onPressAction} data={item} index={index} size={size} navigation={this.props.navigation}/>
+        return <Card
+                    data={item}
+                    index={index}
+                    size={size}
+                    onPressAction={this.props.onPressAction}
+                    navigation={this.props.navigation}
+                    titleKey={this.props.titleKey}
+                    />
     }
 
     render(){

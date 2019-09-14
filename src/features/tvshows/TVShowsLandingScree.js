@@ -28,7 +28,11 @@ class TVShowsLandingScree extends React.Component {
 
     getFlatListItem(index, item){
         return <View style={{marginBottom: 16}}>
-            <Carousel data={item} navigation={this.props.navigation}/>
+            <Carousel
+                data={item}
+                navigation={this.props.navigation}
+                titleKey={"name"}
+                />
         </View>
     }
 

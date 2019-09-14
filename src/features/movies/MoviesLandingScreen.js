@@ -30,16 +30,26 @@ class MoviesLandingScreen extends React.Component {
         }
     }
 
-    getFlatListItem(index, item) {
-        return <View style={{ marginBottom: 16 }}>
-            <Carousel data={item} navigation={this.props.navigation} />
-        </View>
-    }
-
     gotoScreen = (item, navigation) => {
         if (item) {
             navigation.navigate('MovieDetails', { movieId: item.id });
         }
+    }
+
+    getFlatListItem(index, item){
+        return <View style={{marginBottom: 16}}>
+            <Carousel
+                data={item}
+                navigation={this.props.navigation}
+                onPressChevron={this.onPressChevron}
+                onPressAction={this.gotoScreen}
+                titleKey={"title"}
+                />
+        </View>
+    }
+
+    onPressChevron = () => {
+        this.props.navigation.navigate("MovieList");
     }
 
     render() {

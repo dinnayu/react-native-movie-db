@@ -1,18 +1,13 @@
 import React from 'react';
 import {
-    View, Image, StatusBar, ActivityIndicator
+    View, StyleSheet, StatusBar, ActivityIndicator
 } from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppNavigator from './src/navigator/AppNavigator';
 
-//Call EStyleSheet.build() only once here for entire app.
-//EStyleSheet extend the reusability of standard react native stylesheet.
-EStyleSheet.build({});
-
 /** Basic styles configuration */
-const styles = EStyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-end'

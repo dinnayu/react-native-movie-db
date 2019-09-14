@@ -1,10 +1,8 @@
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { Dimensions } from 'react-native';
-import { Header } from 'react-navigation';
+import {StyleSheet, Dimensions } from 'react-native';
 import Color from '../../common/Color';
 const { width } = Dimensions.get('window');
 
-export default EStyleSheet.create({
+export default StyleSheet.create({
 
     containerCard: {
         width: width/3,

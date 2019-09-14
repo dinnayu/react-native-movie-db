@@ -17,6 +17,11 @@ export const updateUpcomingAction = upcoming => ({
     payload: upcoming
 });
 
+export const updateMovieDetailsAction = movieDetails => ({
+    type: Constant.REDUX_ACTION_TYPE.MOVIE_DETAILS_ACTION,
+    payload: movieDetails
+});
+
 export function fetchNowPlayingMovie(){
     const URL = `${BASE_URL}/movie/now_playing${API}${API_KEY}&${LANGUAGE}&page=1`;
     return dispatch => {
@@ -54,6 +59,21 @@ export function fetchUpcomingMovie(){
         return BaseService.doGet(URL)
             .then((response) => {
                 dispatch(updateUpcomingAction(response));
+                dispatch(isLoadingOverlayAction(false));
+            })
+            .catch(error => {
+                dispatch(fetchRequestFailure(error))
+            })
+    };
+}
+
+export function fetchMovieDetails(movieId){
+    const URL = `${BASE_URL}/movie/${movieId}${API}${API_KEY}&${LANGUAGE}`;
+    return dispatch => {
+        dispatch(isLoadingOverlayAction(true));
+        return BaseService.doGet(URL)
+            .then((response) => {
+                dispatch(updateMovieDetailsAction(response));
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
