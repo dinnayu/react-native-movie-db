@@ -13,17 +13,26 @@ class TVShowListScreen extends React.Component {
     constructor(){
         super();
         this.state = {
-            page: 1
-        },
-        this.totalPage = 0,
-        this.totalResult = 0;
+            page: 1,
+            totalPage: 1
+        }
     }
 
     componentDidMount(){
         this.getList(this.state.page, this.props.navigation.state.params.type);
     }
 
+    componentDidUpdate(){
+        if ( this.props.tvShow && this.props.tvShow.tvList &&
+            this.props.tvShow.tvList.total_pages && this.state.totalPage !== this.props.tvShow.tvList.total_pages){
+                this.setState({
+                    totalPage: this.props.tvShow.tvList.total_pages
+                })
+            }
+    }
+
     getList(page, type){
+        this.props.tvShow.tvList = null;
         if (type === Constant.TV_SHOWS_TYPE.AIRING_TODAY){
             this.props.fetchAiringTvList(page, true);
         } else if (type === Constant.TV_SHOWS_TYPE.POPULAR_TV){
@@ -50,7 +59,7 @@ class TVShowListScreen extends React.Component {
         const leftArrowDisable = require('../../assets/left_arrow_disable.png')
         const rightArrowEnable = require('../../assets/right_arrow.png');
         const rightArrowDisable = require('../../assets/right_arrow_disable.png')
-        const totalPage = this.props.tvShow.tvList.total_pages;
+        const totalPage = this.state.totalPage;
 
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -95,7 +104,7 @@ class TVShowListScreen extends React.Component {
                     <Image style={[Styles.imageMovieList, item.poster_path ? null : Styles.imageBorder]}
                         source={imageSource} />
                     <View style={{flex: 1, marginLeft: 12}}>
-                        <Text style={Styles.textMovieListTitle}>{item.title}</Text>
+                        <Text style={Styles.textMovieListTitle}>{item.original_name}</Text>
                         {this.getRating(item.vote_average)}
                     </View>
                 </View>
@@ -105,24 +114,21 @@ class TVShowListScreen extends React.Component {
     }
 
     render() {
-        if (this.props.tvShow.tvList) {
-            const tvList = this.props.tvShow.tvList;
-            return (
-                <View style={Styles.containerMovieDetails}>
-                    <View style={Styles.containerPagination}>
-                        {this.getPagination()}
-                    </View>
-                    <FlatList
-                        style={Styles.flatlistMovie}
-                        data={tvList.results}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => this.getFlatListItem(index, item)}
-                    />
+        var content = this.props.tvShow.tvList ? <FlatList
+            style={Styles.flatlistMovie}
+            data={this.props.tvShow.tvList .results}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => this.getFlatListItem(index, item)}
+        /> : null;
+
+        return (
+            <View style={Styles.containerMovieDetails}>
+                <View style={Styles.containerPagination}>
+                    {this.getPagination()}
                 </View>
-            )
-        } else {
-            return <View />
-        }
+                {content}
+            </View>
+        )
     }
 
 }

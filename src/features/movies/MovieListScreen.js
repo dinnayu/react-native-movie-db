@@ -13,14 +13,22 @@ class MovieListScreen extends React.Component {
     constructor(){
         super();
         this.state = {
-            page: 1
-        },
-        this.totalPage = 0,
-        this.totalResult = 0;
+            page: 1,
+            totalPage: 1
+        }
     }
 
     componentDidMount(){
         this.getList(this.state.page, this.props.navigation.state.params.type);
+    }
+
+    componentDidUpdate(){
+        if ( this.props.movies && this.props.movies.movieList &&
+            this.props.movies.movieList.total_pages && this.state.totalPage !== this.props.movies.movieList.total_pages){
+                this.setState({
+                    totalPage: this.props.movies.movieList.total_pages
+                })
+            }
     }
 
     getList(page, type){
@@ -51,7 +59,7 @@ class MovieListScreen extends React.Component {
         const leftArrowDisable = require('../../assets/left_arrow_disable.png')
         const rightArrowEnable = require('../../assets/right_arrow.png');
         const rightArrowDisable = require('../../assets/right_arrow_disable.png')
-        const totalPage = this.props.movies.movieList.total_pages;
+        const totalPage = this.state.totalPage;
 
         return (
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -106,24 +114,20 @@ class MovieListScreen extends React.Component {
     }
 
     render() {
-        if (this.props.movies.movieList) {
-            const movieList = this.props.movies.movieList;
-            return (
-                <View style={Styles.containerMovieDetails}>
-                    <View style={Styles.containerPagination}>
-                        {this.getPagination()}
-                    </View>
-                    <FlatList
-                        style={Styles.flatlistMovie}
-                        data={this.props.movies.movieList.results}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => this.getFlatListItem(index, item)}
-                    />
+        var content = this.props.movies.movieList ? <FlatList
+            style={Styles.flatlistMovie}
+            data={this.props.movies.movieList.results}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => this.getFlatListItem(index, item)}
+        /> : null;
+        return (
+            <View style={Styles.containerMovieDetails}>
+                <View style={Styles.containerPagination}>
+                    {this.getPagination()}
                 </View>
-            )
-        } else {
-            return <View />
-        }
+                {content}
+            </View>
+        )
     }
 
 }
