@@ -33,7 +33,7 @@ class MoviesLandingScreen extends React.Component {
         return (
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <FlatList
-                    style={{flex: 1, backgroundColor: 'yellow'}}
+                    style={{flex: 1}}
                     data={data}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => this.getFlatListItem(index, item)}

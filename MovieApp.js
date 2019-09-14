@@ -1,8 +1,6 @@
 import React from 'react';
 import {
-    View, Image, StatusBar, DeviceEventEmitter,
-    Platform, Text, TouchableOpacity, AppState,
-    ActivityIndicator, Alert, Linking, NativeModules, TouchableWithoutFeedback
+    View, Image, StatusBar, ActivityIndicator
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { bindActionCreators } from 'redux';
@@ -17,7 +15,8 @@ EStyleSheet.build({});
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        paddingTop: 30
     },
     mask: {
         width: '100%',
@@ -55,8 +54,8 @@ class MovieApp extends React.Component {
     render(){
         return (
             <View style={styles.container}>
+                <AppNavigator />
                 {this.props.common.isLoading ? this.getMaskingOverlay() : null}
-                <AppNavigator /> 
             </View>
             
         )
