@@ -39,10 +39,14 @@ const BaseServices = {
 				if (response.status === 200 || response.status === 201) {
 					resolve(jsonObj);
 				} else {
-					reject(jsonObj);
+					reject({
+						"error": jsonObj
+					});
 				}
 			})
-			.catch(error => reject(error));
+			.catch(error => reject({
+				"error": jsonObj
+			}));
 	}
 }
 

@@ -33,6 +33,7 @@ export function fetchNowPlayingMovie(page = 1, isRequestList = false){
         dispatch(isLoadingOverlayAction(true));
         return BaseService.doGet(URL)
             .then((response) => {
+                console.log("REPONSE >>>>" ,response)
                 if (isRequestList){
                     dispatch(updateMovieListAction(response));
                 } else {

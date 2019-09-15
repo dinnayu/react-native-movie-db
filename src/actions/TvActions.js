@@ -94,7 +94,8 @@ export function fetchTvDetails(tvId){
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
-                dispatch(fetchRequestFailure(error))
+                dispatch(updateTvDetails(error));
+                dispatch(isLoadingOverlayAction(false));
             })
     };
 }

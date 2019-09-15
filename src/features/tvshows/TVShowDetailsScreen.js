@@ -18,16 +18,30 @@ class TVShowDetailsScreen extends React.Component {
     }
 
     componentDidMount() {
+        this.callTvDetailsService()
+    }
+
+    componentDidUpdate(){
+        if (this.props.tvShow.tvDetails && this.props.tvShow.tvDetails.error){
+            CommonUtils.showErrorModal(() => this.callTvDetailsService());
+            this.props.tvShow.tvDetails = null;
+        }
+    }
+
+    componentWillUnmount(){
+         /** Clear redux for tv details */
+         this.props.tvShow.tvDetails = null;
+    }
+
+    /**
+     * Method to call tv details service
+     */
+    callTvDetailsService(){
         var id = this.props.navigation.state.params.data.id;
         if (id){
             this.props.fetchTvDetails(id);
         }
     }
-
-     componentWillUnmount(){
-         /** Clear redux for tv details */
-         this.props.tvShow.tvDetails = null;
-     }
 
     /**
      * Method to return a view based on type of selected tv show
@@ -181,7 +195,7 @@ class TVShowDetailsScreen extends React.Component {
     }
 
     render() {
-        var screen = this.props.tvShow.tvDetails ? this.getDetails() : <View style={Styles.containerTv} />
+        var screen = this.props.tvShow.tvDetails && !this.props.tvShow.tvDetails.error ? this.getDetails() : <View style={Styles.containerTv} />
         return screen
     }
 }
@@ -192,8 +206,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({ fetchTvDetails }, di
 
 /** Map common and tvShow state to redux components */
 const mapStateToProps = state => ({
-    tvShow: state.tvshow,
-    common: state.common
+    tvShow: state.tvshow
 });
 
 /** Connect mapStateToProps to TV Show Details Screen */
