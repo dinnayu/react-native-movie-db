@@ -99,11 +99,11 @@ class MoviesLandingScreen extends React.Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchNowPlayingMovie, fetchPopularMovie, fetchUpcomingMovie }, dispatch);
 
 
-/** Map common and book state to redux components */
+/** Map common and movies state to redux components */
 const mapStateToProps = state => ({
     movies: state.movies,
     common: state.common
 });
 
-/** Connect mapStateToProps to BookScreen */
+/** Connect mapStateToProps to MoviesLandingScreen */
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesLandingScreen);

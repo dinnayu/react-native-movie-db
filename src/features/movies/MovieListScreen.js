@@ -137,10 +137,11 @@ class MovieListScreen extends React.Component {
 const mapDispatchToProps = dispatch => bindActionCreators({fetchNowPlayingMovie, fetchUpcomingMovie, fetchPopularMovie}, dispatch);
 
 
-/** Map common and book state to redux components */
+/** Map common and movies state to redux components */
 const mapStateToProps = state => ({
-    movies: state.movies
+    movies: state.movies,
+    common: state.common
 });
 
-/** Connect mapStateToProps to Movie Details Screen */
+/** Connect mapStateToProps to Movie List Screen */
 export default connect(mapStateToProps, mapDispatchToProps)(MovieListScreen);

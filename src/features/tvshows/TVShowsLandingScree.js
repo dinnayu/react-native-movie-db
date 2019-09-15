@@ -33,8 +33,15 @@ class TVShowsLandingScree extends React.Component {
                 navigation={this.props.navigation}
                 titleKey={"name"}
                 onPressChevron={this.onPressChevron}
+                onPressAction={this.gotoScreen}
                 />
         </View>
+    }
+
+    gotoScreen = (item, navigation) => {
+        if (item) {
+            navigation.navigate('TvDetails', { data: item });
+        }
     }
 
     onPressChevron = (type) => {
@@ -48,11 +55,11 @@ class TVShowsLandingScree extends React.Component {
         }
 
         if (this.props.tvShow && this.props.tvShow.popularTv && this.props.tvShow.popularTv.results.length > 0) {
-            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.AIRING_TODAY, this.props.tvShow.popularTv.results));
+            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.POPULAR_TV, this.props.tvShow.popularTv.results));
         }
 
         if (this.props.tvShow && this.props.tvShow.onTheAirTv && this.props.tvShow.onTheAirTv.results.length > 0) {
-            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.AIRING_TODAY, this.props.tvShow.onTheAirTv.results));
+            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.ON_THE_AIR_TV, this.props.tvShow.onTheAirTv.results));
         }
 
         return (
@@ -72,10 +79,11 @@ class TVShowsLandingScree extends React.Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchAiringTvList, fetchPopularTvList, fetchOnTheAirTvList }, dispatch);
 
 
-/** Map common and book state to redux components */
+/** Map common and tvShow state to redux components */
 const mapStateToProps = state => ({
-    tvShow: state.tvshow
+    tvShow: state.tvshow,
+    common: state.common
 });
 
-/** Connect mapStateToProps to BookScreen */
+/** Connect mapStateToProps to TV Show Landing Screen */
 export default connect(mapStateToProps, mapDispatchToProps)(TVShowsLandingScree);

@@ -91,7 +91,7 @@ class TVShowListScreen extends React.Component {
 
     gotoDetailsScreen(item){
         if (item) {
-            this.props.navigation.navigate('MovieDetails', { data: item });
+            this.props.navigation.navigate('TvDetails', { data: item });
         }
     }
 
@@ -139,11 +139,12 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     fetchAiringTvList, fetchOnTheAirTvList, fetchPopularTvList}, dispatch);
 
 
-/** Map common and book state to redux components */
+/** Map common, tvShow, and movies state to redux components */
 const mapStateToProps = state => ({
     tvShow: state.tvshow,
-    movies: state.movies
+    movies: state.movies,
+    common: state.common
 });
 
-/** Connect mapStateToProps to Movie Details Screen */
+/** Connect mapStateToProps to TV Show List Screen */
 export default connect(mapStateToProps, mapDispatchToProps)(TVShowListScreen);

@@ -79,9 +79,10 @@ class MovieDetailsScreen extends React.Component {
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchMovieDetails }, dispatch);
 
 
-/** Map common and book state to redux components */
+/** Map common and movies state to redux components */
 const mapStateToProps = state => ({
-    movie: state.movies
+    movie: state.movies,
+    common: state.common
 });
 
 /** Connect mapStateToProps to Movie Details Screen */
