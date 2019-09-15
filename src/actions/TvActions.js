@@ -22,6 +22,11 @@ export const updateTvListAction = tvList => ({
     payload: tvList
 });
 
+export const updateTvDetails = tvDetails => ({
+    type: Constant.REDUX_ACTION_TYPE.TV_DETAILS_ACTION,
+    payload: tvDetails
+});
+
 export function fetchAiringTvList(page, isRequestList = false){
     const URL = `${BASE_URL}/tv/airing_today${API}${API_KEY}&${LANGUAGE}&page=${page}`;
     return dispatch => {
@@ -71,6 +76,21 @@ export function fetchOnTheAirTvList(page, isRequestList = false){
                 } else {
                     dispatch(updateOnTheAirTvAction(response));
                 }
+                dispatch(isLoadingOverlayAction(false));
+            })
+            .catch(error => {
+                dispatch(fetchRequestFailure(error))
+            })
+    };
+}
+
+export function fetchTvDetails(tvId){
+    const URL = `${BASE_URL}/tv/${tvId}${API}${API_KEY}&${LANGUAGE}`;
+    return dispatch => {
+        dispatch(isLoadingOverlayAction(true));
+        return BaseService.doGet(URL)
+            .then((response) => {
+                dispatch(updateTvDetails(response));
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {

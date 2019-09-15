@@ -7,6 +7,10 @@ import Constants from "./Constants";
  */
 const CommonUtils = {
 
+    /**
+     * Method to show error modal
+     * @param {function} positiveAction 
+     */
     showErrorModal(positiveAction){
         Alert.alert(
             Constants.ERROR_MODAL.TITLE,
@@ -17,6 +21,14 @@ const CommonUtils = {
                 {   text: Constants.ERROR_MODAL.OK,
                     onPress: positiveAction}
             ], { cancelable: false });
+    },
+
+    /**
+     * Method to return image source
+     * @param {Object} source 
+     */
+    getImageSource(uriSource){
+        return uriSource ? {uri: Constants.BASE_URL_IMAGE + uriSource} : require('../assets/default_image.png')
     }
 }
 export default CommonUtils;

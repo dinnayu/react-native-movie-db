@@ -10,7 +10,8 @@ export default {
         REQUEST_FAILURE: "REQUEST_FAILURE",
         MOVIE_DETAILS_ACTION: "MOVIE_DETAILS_ACTION",
         MOVIE_LIST_ACTION: "MOVIE_LIST_ACTION",
-        TV_LIST_ACTION: "TV_LIST_ACTION"
+        TV_LIST_ACTION: "TV_LIST_ACTION",
+        TV_DETAILS_ACTION: "TV_DETAILS_ACTION" 
     },
     MOVIES_TYPE: {
         NOW_PLAYING: "Now Playing",
@@ -32,5 +33,10 @@ export default {
         MESSAGE: "Something went wrong. Please try again.",
         CANCEL: "Cancel",
         OK: "OK"
+    },
+    TV_DETAILS: {
+        GENRES: "Genres",
+        ORIGINAL_LANGUAGE: "Original Language",
+        CREATED_BY: "Created By"
     }
 }

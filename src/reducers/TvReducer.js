@@ -5,7 +5,8 @@ const initialState = {
     airingTv: null,
     popularTv: null,
     onTheAirTv: null,
-    tvList: null
+    tvList: null,
+    tvDetails: null
 }
 
 /** Movie reducer to set movies state */
@@ -18,6 +19,8 @@ const Reducer = (state = initialState, action) => {
         return { ...state, onTheAirTv: action.payload};
     } else if (action.type === Constant.REDUX_ACTION_TYPE.TV_LIST_ACTION) {
         return { ...state, tvList: action.payload};
+    } else if (action.type === Constant.REDUX_ACTION_TYPE.TV_DETAILS_ACTION) {
+        return { ...state, tvDetails: action.payload};
     }
     return state;
 }
