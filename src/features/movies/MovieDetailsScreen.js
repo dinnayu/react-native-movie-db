@@ -8,6 +8,12 @@ import { fetchMovieDetails } from '../../actions/MoviesActions';
 import Styles from './Styles';
 import CommonUtils from '../../common/CommonUtils';
 
+/**
+ * A class of TV Shows Details
+ * This class is arranging TV Shows Details UI
+ * In this screen, user will see TV Show information
+ * Contains poster image, rating, overview, all seasons, etc
+ */
 class MovieDetailsScreen extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
@@ -29,6 +35,9 @@ class MovieDetailsScreen extends React.Component {
         this.props.movie.movieDetails = null;
     }
 
+    /**
+     * Method to call tv details service
+     */
     callMovieDetailsService(){
         var id = this.props.navigation.state.params.data.id;
         if (id){
@@ -85,6 +94,11 @@ class MovieDetailsScreen extends React.Component {
         )
     }
 
+    /**
+     * Method to return a view from object
+     * @param {Object} item 
+     * @param {String} type 
+     */
     getViewObject(item, type){
         return <View style={{marginBottom: 12}}>
                     <Text style={Styles.textKeyMovieDetails}>{type}: </Text>
@@ -92,11 +106,19 @@ class MovieDetailsScreen extends React.Component {
                 </View>
     }
 
+    /**
+     * Method to return formatted date
+     * @param {String} item 
+     */
     getReleaseDate(item){
         var date = item ? moment(item) : "";
         return date ? `${date.date()} ${date.format("MMM")} ${date.year()}` : "";
     }
 
+    /**
+     * Method to convert duration from minutes to hours
+     * @param {int} duration 
+     */
     getDurationTime(duration){
         if (duration){
             var time = moment.duration(duration, 'minutes');

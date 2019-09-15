@@ -9,6 +9,13 @@ import Carousel from '../common/Carousel';
 import Styles from './Styles';
 import CommonUtils from '../../common/CommonUtils';
 
+/**
+ * A class of Movies Landing
+ * This class is arranging Movies Landing UI
+ * In this screen, user will see list of Airing Now Playing movies, Popular movies, and Upcoming movies
+ * If user tap on chevron button, user will navigate to Movie List screen of selected category.
+ * If user tap on movie card, user will navigate to Movie Details screen of selected movie.
+ */
 class MoviesLandingScreen extends React.Component {
     static navigationOptions = ({ navigation }) => {
         return { headerTitle: Constant.TITLE.MOVIES };
@@ -33,12 +40,20 @@ class MoviesLandingScreen extends React.Component {
         }
     }
 
+    /**
+     * Method to call movie service
+     */
     getMovieList() {
         this.props.fetchNowPlayingMovie().then();
         this.props.fetchPopularMovie();
         this.props.fetchUpcomingMovie();
     }
 
+    /**
+     * Method will return an object that contains type and data
+     * @param {String} type 
+     * @param {Object} data 
+     */
     getObjectData(type, data) {
         return {
             "type": type,
@@ -46,12 +61,21 @@ class MoviesLandingScreen extends React.Component {
         }
     }
 
+    /**
+     * This method will navigate to Movie Details screen
+     * Will be invoked if user tap on movie card
+     */
     gotoScreen = (item, navigation) => {
         if (item) {
             navigation.navigate('MovieDetails', { data: item });
         }
     }
 
+    /**
+     * Method to return a view of flat list item
+     * @param {int} index 
+     * @param {Object} item 
+     */
     getFlatListItem(index, item){
         return <View style={{marginBottom: 16}}>
             <Carousel
@@ -64,6 +88,10 @@ class MoviesLandingScreen extends React.Component {
         </View>
     }
 
+    /**
+     * This method will navigate to Movie List screen
+     * Will be invoked if user tap on chevron button
+     */
     onPressChevron = (type) => {
         this.props.navigation.navigate("MovieList", {type: type});
     }
