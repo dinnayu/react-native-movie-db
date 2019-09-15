@@ -9,6 +9,12 @@ import Colors from '../../common/Colors';
 import moment from 'moment';
 import CommonUtils from '../../common/CommonUtils';
 
+/**
+ * A class of TV Shows Details
+ * This class is arranging TV Shows Details UI
+ * In this screen, user will see TV Show information
+ * Contains poster image, rating, overview, all seasons, etc
+ */
 class TVShowDetailsScreen extends React.Component {
     constructor(){
         super();

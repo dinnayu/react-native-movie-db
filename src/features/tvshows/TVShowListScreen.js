@@ -8,6 +8,12 @@ import Constant from '../../common/Constants';
 import Styles from '../movies/Styles';
 import Color from '../../common/Colors';
 
+/**
+ * A class of TV Shows List
+ * This class is arranging TV Shows List UI
+ * In this screen, user will see list of selected TV Show category
+ * If user tap on tv show card, user will navigate to TV Show Details screen of selected TV Show
+ */
 class TVShowListScreen extends React.Component {
 
     constructor(){
@@ -31,6 +37,11 @@ class TVShowListScreen extends React.Component {
             }
     }
 
+    /**
+     * Method to call service by selected tv show category
+     * @param {int} page 
+     * @param {String} type 
+     */
     getList(page, type){
         this.props.tvShow.tvList = null;
         if (type === Constant.TV_SHOWS_TYPE.AIRING_TODAY){
@@ -42,6 +53,10 @@ class TVShowListScreen extends React.Component {
         }
     }
 
+    /**
+     * This method will be invoked if user tap on arrow of pagination
+     * @param {boolean} isIncrease 
+     */
     onPressArrow(isIncrease){
         var page = this.state.page;
         if (isIncrease){
@@ -54,6 +69,10 @@ class TVShowListScreen extends React.Component {
         this.getList(page, this.props.navigation.state.params.type);
     }
 
+    /**
+     * Method to return a view of pagination
+     * Contains left arrow button, current page, total pages, and right arrow button
+     */
     getPagination(){
         const leftArrowEnable = require('../../assets/left_arrow.png');
         const leftArrowDisable = require('../../assets/left_arrow_disable.png')
@@ -78,6 +97,10 @@ class TVShowListScreen extends React.Component {
         )
     }
 
+    /**
+     * Method to return a view of tv show rating
+     * @param {String} rating 
+     */
     getRating(rating){
         if (rating){
             return (
@@ -89,12 +112,22 @@ class TVShowListScreen extends React.Component {
         }
     }
 
+    /**
+     * This method will navigate user to TV Details screen
+     * This method will be invoked if user tap on tv show card
+     * @param {Object} item 
+     */
     gotoDetailsScreen(item){
         if (item) {
             this.props.navigation.navigate('TvDetails', { data: item });
         }
     }
 
+    /**
+     * Method to return a flat list item
+     * @param {int} index 
+     * @param {Object} item 
+     */
     getFlatListItem(index, item){
         const imageSource = item.poster_path ? {uri: Constant.BASE_URL_IMAGE+item.poster_path} : require('../../assets/default_image.png');
 
