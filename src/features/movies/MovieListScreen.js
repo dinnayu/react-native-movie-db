@@ -7,6 +7,7 @@ import { fetchNowPlayingMovie, fetchUpcomingMovie, fetchPopularMovie } from '../
 import Constant from '../../common/Constants';
 import Styles from './Styles';
 import Color from '../../common/Colors';
+import CommonUtils from '../../common/CommonUtils';
 
 class MovieListScreen extends React.Component {
 
@@ -23,12 +24,17 @@ class MovieListScreen extends React.Component {
     }
 
     componentDidUpdate(){
-        if ( this.props.movies && this.props.movies.movieList &&
-            this.props.movies.movieList.total_pages && this.state.totalPage !== this.props.movies.movieList.total_pages){
+        if ( this.props.movies && this.props.movies.movieList && this.props.movies.movieList.body){
+            if (this.props.movies.movieList.body.total_pages && this.state.totalPage !== this.props.movies.movieList.body.total_pages){
                 this.setState({
-                    totalPage: this.props.movies.movieList.total_pages
+                    totalPage: this.props.movies.movieList.body.total_pages
                 })
-            }
+            }     
+        } else {
+            CommonUtils.showErrorModal(() => {
+                this.getList(this.state.page, this.props.navigation.state.params.type);
+            })
+        }
     }
 
     getList(page, type){
@@ -114,9 +120,9 @@ class MovieListScreen extends React.Component {
     }
 
     render() {
-        var content = this.props.movies.movieList ? <FlatList
+        var content = this.props.movies.movieList &&  this.props.movies.movieList.body ? <FlatList
             style={Styles.flatlistMovie}
-            data={this.props.movies.movieList.results}
+            data={this.props.movies.movieList.body.results}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => this.getFlatListItem(index, item)}
         /> : null;

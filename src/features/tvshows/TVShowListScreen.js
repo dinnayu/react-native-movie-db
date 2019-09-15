@@ -23,10 +23,10 @@ class TVShowListScreen extends React.Component {
     }
 
     componentDidUpdate(){
-        if ( this.props.tvShow && this.props.tvShow.tvList &&
-            this.props.tvShow.tvList.total_pages && this.state.totalPage !== this.props.tvShow.tvList.total_pages){
+        if ( this.props.tvShow && this.props.tvShow.tvList && this.props.tvShow.tvList.body &&
+            this.props.tvShow.tvList.body.total_pages && this.state.totalPage !== this.props.tvShow.tvList.body.total_pages){
                 this.setState({
-                    totalPage: this.props.tvShow.tvList.total_pages
+                    totalPage: this.props.tvShow.tvList.body.total_pages
                 })
             }
     }
@@ -114,9 +114,9 @@ class TVShowListScreen extends React.Component {
     }
 
     render() {
-        var content = this.props.tvShow.tvList ? <FlatList
+        var content = this.props.tvShow.tvList && this.props.tvShow.tvList.body ? <FlatList
             style={Styles.flatlistMovie}
-            data={this.props.tvShow.tvList .results}
+            data={this.props.tvShow.tvList.body.results}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => this.getFlatListItem(index, item)}
         /> : null;

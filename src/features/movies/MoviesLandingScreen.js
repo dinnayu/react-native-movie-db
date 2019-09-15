@@ -34,7 +34,7 @@ class MoviesLandingScreen extends React.Component {
     }
 
     getMovieList() {
-        this.props.fetchNowPlayingMovie();
+        this.props.fetchNowPlayingMovie().then();
         this.props.fetchPopularMovie();
         this.props.fetchUpcomingMovie();
     }
@@ -70,16 +70,16 @@ class MoviesLandingScreen extends React.Component {
 
     render() {
         var data = [];
-        if (this.props.movies && this.props.movies.nowPlaying && this.props.movies.nowPlaying.results.length > 0) {
-            data.push(this.getObjectData(Constant.MOVIES_TYPE.NOW_PLAYING, this.props.movies.nowPlaying.results));
+        if (this.props.movies && this.props.movies.nowPlaying && this.props.movies.nowPlaying.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.MOVIES_TYPE.NOW_PLAYING, this.props.movies.nowPlaying.body.results));
         }
 
-        if (this.props.movies && this.props.movies.popular && this.props.movies.popular.results.length > 0) {
-            data.push(this.getObjectData(Constant.MOVIES_TYPE.POPULAR, this.props.movies.popular.results));
+        if (this.props.movies && this.props.movies.popular && this.props.movies.popular.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.MOVIES_TYPE.POPULAR, this.props.movies.popular.body.results));
         }
 
-        if (this.props.movies && this.props.movies.upcoming && this.props.movies.upcoming.results.length > 0) {
-            data.push(this.getObjectData(Constant.MOVIES_TYPE.UPCOMING, this.props.movies.upcoming.results));
+        if (this.props.movies && this.props.movies.upcoming && this.props.movies.upcoming.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.MOVIES_TYPE.UPCOMING, this.props.movies.upcoming.body.results));
         }
 
         return (

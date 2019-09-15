@@ -37,7 +37,9 @@ const BaseServices = {
 		response.json()
 			.then(jsonObj => {
 				if (response.status === 200 || response.status === 201) {
-					resolve(jsonObj);
+					resolve({
+						"body": jsonObj
+					});
 				} else {
 					reject({
 						"error": jsonObj

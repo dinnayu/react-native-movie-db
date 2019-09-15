@@ -108,8 +108,8 @@ class MovieDetailsScreen extends React.Component {
     }
 
     render() {
-        if (this.props.movie.movieDetails && !this.props.movie.movieDetails.error) {
-            const movieDetails = this.props.movie.movieDetails;
+        if (this.props.movie.movieDetails && this.props.movie.movieDetails.body) {
+            const movieDetails = this.props.movie.movieDetails.body;
 
             return (
                 <ScrollView style={{flex: 1}}>

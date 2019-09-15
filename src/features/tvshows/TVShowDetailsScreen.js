@@ -178,7 +178,7 @@ class TVShowDetailsScreen extends React.Component {
      * Will be invoked after service get tv details returns success
      */
     getDetails(){
-        var tvDetails = this.props.tvShow.tvDetails;
+        var tvDetails = this.props.tvShow.tvDetails.body;
         var sourceImage = CommonUtils.getImageSource(tvDetails.poster_path);
         
         return (
@@ -211,7 +211,7 @@ class TVShowDetailsScreen extends React.Component {
     }
 
     render() {
-        var screen = this.props.tvShow.tvDetails && !this.props.tvShow.tvDetails.error ? this.getDetails() : <View style={Styles.containerTv} />
+        var screen = this.props.tvShow.tvDetails && this.props.tvShow.tvDetails.body ? this.getDetails() : <View style={Styles.containerTv} />
         return screen
     }
 }

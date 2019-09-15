@@ -50,16 +50,16 @@ class TVShowsLandingScree extends React.Component {
 
     render() {
         var data = [];
-        if (this.props.tvShow && this.props.tvShow.airingTv && this.props.tvShow.airingTv.results.length > 0) {
-            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.AIRING_TODAY, this.props.tvShow.airingTv.results));
+        if (this.props.tvShow && this.props.tvShow.airingTv && this.props.tvShow.airingTv.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.AIRING_TODAY, this.props.tvShow.airingTv.body.results));
         }
 
-        if (this.props.tvShow && this.props.tvShow.popularTv && this.props.tvShow.popularTv.results.length > 0) {
-            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.POPULAR_TV, this.props.tvShow.popularTv.results));
+        if (this.props.tvShow && this.props.tvShow.popularTv && this.props.tvShow.popularTv.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.POPULAR_TV, this.props.tvShow.popularTv.body.results));
         }
 
-        if (this.props.tvShow && this.props.tvShow.onTheAirTv && this.props.tvShow.onTheAirTv.results.length > 0) {
-            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.ON_THE_AIR_TV, this.props.tvShow.onTheAirTv.results));
+        if (this.props.tvShow && this.props.tvShow.onTheAirTv && this.props.tvShow.onTheAirTv.body.results.length > 0) {
+            data.push(this.getObjectData(Constant.TV_SHOWS_TYPE.ON_THE_AIR_TV, this.props.tvShow.onTheAirTv.body.results));
         }
 
         return (
