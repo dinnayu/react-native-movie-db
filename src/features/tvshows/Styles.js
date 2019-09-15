@@ -85,6 +85,19 @@ export default StyleSheet.create({
     textOverviewSeason:{
         fontSize: 12,
         color: Color.GREY
+    },
+
+    textRating: {
+        fontSize: 16,
+        color: Color.GREY,
+        fontWeight: 'bold'
+    },
+
+    ratingIcon: {
+        width: 15,
+        height: 15,
+        alignSelf: 'center',
+        resizeMode: 'contain'
     }
 
 })

@@ -159,6 +159,21 @@ class TVShowDetailsScreen extends React.Component {
     }
 
     /**
+     * Method to return a view of movies rating
+     * @param {String} rating 
+     */
+    getRating(rating){
+        if (rating){
+            return (
+                <View style={{flexDirection: 'row', marginBottom: 12, alignItems: 'center'}}>
+                    <Text style={Styles.textRating}>{rating}</Text>
+                    <Image style={Styles.ratingIcon} source={require("../../assets/star.png")} />
+                </View>
+            )
+        }
+    }
+
+    /**
      * Method to return a view of selected tv show details
      * Will be invoked after service get tv details returns success
      */
@@ -174,6 +189,7 @@ class TVShowDetailsScreen extends React.Component {
                         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12}}>
                             <Image style={Styles.imageTvDetails} source={sourceImage} />
                             <View style={{flex: 1, marginLeft: 12}}>
+                                {this.getRating(tvDetails.vote_average)}
                                 {this.getType(tvDetails.genres, Constants.TV_DETAILS.GENRES)}
                                 {this.getOriginalLanguage(tvDetails.original_language)}
                                 {this.getType(tvDetails.created_by, Constants.TV_DETAILS.CREATED_BY)}

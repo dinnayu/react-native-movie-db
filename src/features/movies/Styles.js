@@ -22,7 +22,9 @@ export default StyleSheet.create({
         flex: 1,
         paddingLeft: 24,
         paddingRight: 24,
-        paddingTop: 12
+        paddingTop: 12,
+        paddingBottom: 12
+
     },
 
     imageMovieDetails: {
@@ -43,15 +45,36 @@ export default StyleSheet.create({
         marginBottom: 12
     },
 
-    textMovieDetails: {
-        fontSize: 12,
-        marginBottom: 10,
-        letterSpacing: 0.1
+    textKeyMovieDetails: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: Color.PURPLE
     },
 
-    textSynopsis: {
-        fontSize: 14,
-        letterSpacing: 0.3
+    textValueMovieDetails: {
+        fontSize: 14, 
+        fontWeight: '400', 
+        letterSpacing: 0.33, 
+        color: Color.ORANGE
+    },
+
+    textOverviewKey: {
+        fontSize: 18,
+        color: Color.DARK_GREY,
+        marginBottom: 8,
+        letterSpacing: 0.2
+    },
+
+    textOverviewValue: {
+        fontSize: 16,
+        color: Color.GREY,
+        letterSpacing: 0.33
+    },
+
+    textRating: {
+        fontSize: 16,
+        color: Color.GREY,
+        fontWeight: 'bold'
     },
 
     /** MOVIE LIST */
@@ -81,6 +104,7 @@ export default StyleSheet.create({
     ratingIcon: {
         width: 15,
         height: 15,
+        alignSelf: 'center',
         resizeMode: 'contain'
     },
     textPagination: {

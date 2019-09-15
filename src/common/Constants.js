@@ -34,6 +34,12 @@ export default {
         CANCEL: "Cancel",
         OK: "OK"
     },
+    MOVIE_DETAILS: {
+        GENRES: "Genres",
+        SPOKEN_LANGUAGE: "Spoken Language",
+        RELEASE_DATE: "Release Date",
+        DURATION: "Duration"
+    },
     TV_DETAILS: {
         GENRES: "Genres",
         ORIGINAL_LANGUAGE: "Original Language",
