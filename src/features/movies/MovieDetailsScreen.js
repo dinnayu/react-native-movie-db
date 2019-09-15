@@ -6,6 +6,7 @@ import moment, { isDuration } from 'moment';
 import Constant from '../../common/Constants';
 import { fetchMovieDetails } from '../../actions/MoviesActions';
 import Styles from './Styles';
+import CommonUtils from '../../common/CommonUtils';
 
 class MovieDetailsScreen extends React.Component {
 
@@ -14,11 +15,25 @@ class MovieDetailsScreen extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchMovieDetails(this.props.navigation.state.params.data.id);
+        this.callMovieDetailsService()
+    }
+
+    componentDidUpdate(){
+        if (this.props.movie.movieDetails && this.props.movie.movieDetails.error){
+            CommonUtils.showErrorModal(() => this.callMovieDetailsService());
+            this.props.movie.movieDetails = null;
+        }
     }
 
     componentWillUnmount(){
         this.props.movie.movieDetails = null;
+    }
+
+    callMovieDetailsService(){
+        var id = this.props.navigation.state.params.data.id;
+        if (id){
+            this.props.fetchMovieDetails(id);
+        }
     }
 
     /**
@@ -93,7 +108,7 @@ class MovieDetailsScreen extends React.Component {
     }
 
     render() {
-        if (this.props.movie.movieDetails) {
+        if (this.props.movie.movieDetails && !this.props.movie.movieDetails.error) {
             const movieDetails = this.props.movie.movieDetails;
 
             return (

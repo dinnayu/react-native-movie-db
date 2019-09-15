@@ -96,7 +96,8 @@ export function fetchMovieDetails(movieId){
                 dispatch(isLoadingOverlayAction(false));
             })
             .catch(error => {
-                dispatch(fetchRequestFailure(error))
+                dispatch(updateMovieDetailsAction(error));
+                dispatch(isLoadingOverlayAction(false));
             })
     };
 }
