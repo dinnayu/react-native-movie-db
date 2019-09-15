@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, Image } from 'react-native';
-import Constant from '../../common/Constant';
+import Constant from '../../common/Constants';
 import Styles from './Styles';
 
 export default class Card extends React.Component {

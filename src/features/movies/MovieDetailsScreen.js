@@ -3,7 +3,7 @@ import { Image, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
-import Constant from '../../common/Constant';
+import Constant from '../../common/Constants';
 import { fetchMovieDetails } from '../../actions/MoviesActions';
 import Styles from './Styles';
 

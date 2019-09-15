@@ -1,4 +1,4 @@
-import Constant from "../common/Constant";
+import Constant from "../common/Constants";
 
 export const isLoadingOverlayAction = isLoading => ({
     type: Constant.REDUX_ACTION_TYPE.IS_LOADING_OVERLAY_ACTION,

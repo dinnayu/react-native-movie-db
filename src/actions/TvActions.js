@@ -1,5 +1,5 @@
 import BaseService, { BASE_URL, API_KEY, API, LANGUAGE } from '../services/BaseService';
-import Constant from '../common/Constant';
+import Constant from '../common/Constants';
 import {isLoadingOverlayAction, fetchRequestFailure} from './CommonActions';
 
 export const updateAiringTvAction = tvShow => ({

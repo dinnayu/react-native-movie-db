@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, Text, FlatList } from 'react-native';
 import { fetchNowPlayingMovie, fetchUpcomingMovie, fetchPopularMovie } from '../../actions/MoviesActions';
-import Constant from '../../common/Constant';
+import Constant from '../../common/Constants';
 import Styles from './Styles';
-import Color from '../../common/Color';
+import Color from '../../common/Colors';
 
 class MovieListScreen extends React.Component {
 

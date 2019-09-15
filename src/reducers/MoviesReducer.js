@@ -1,4 +1,4 @@
-import Constant from '../common/Constant';
+import Constant from '../common/Constants';
 
 /** Initial state of movie reducer */
 const initialState = {

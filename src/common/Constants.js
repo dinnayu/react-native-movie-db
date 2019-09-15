@@ -26,5 +26,11 @@ export default {
         MOVIES: "MOVIES",
         TV_SHOWS: "TV SHOWS"
     },
-    BASE_URL_IMAGE: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/"
+    BASE_URL_IMAGE: "https://image.tmdb.org/t/p/w300_and_h450_bestv2/",
+    ERROR_MODAL: {
+        TITLE: "Ooops!!!",
+        MESSAGE: "Something went wrong. Please try again.",
+        CANCEL: "Cancel",
+        OK: "OK"
+    }
 }

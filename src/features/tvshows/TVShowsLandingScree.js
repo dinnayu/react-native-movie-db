@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { View, FlatList } from 'react-native';
 import { fetchAiringTvList, fetchPopularTvList, fetchOnTheAirTvList } from '../../actions/TvActions';
-import Constant from '../../common/Constant';
+import Constant from '../../common/Constants';
 import Carousel from '../common/Carousel';
 import Styles from './Styles';
 
